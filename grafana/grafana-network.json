@@ -1,0 +1,1150 @@
+{
+  "id": 2,
+  "title": "Network",
+  "originalTitle": "Network",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "interval": "30s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Received",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.rx_bytes\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Rx Bytes",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Dropped",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.rx_dropped\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Rx Dropped",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Errors",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.rx_errors\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Rx Errors",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Packets",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.rx_packets\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Rx Packets",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 5,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Sent",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.tx_bytes\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Tx Bytes",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 6,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "policy": "default",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]
+                },
+                {
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]
+                }
+              ],
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "type": "mean",
+                    "params": []
+                  }
+                ]
+              ],
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.tx_dropped\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "alias": "Dropped"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Network Tx Dropped",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "links": [],
+          "interval": "5s"
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "title": "New row",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Network Tx Errors",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 7,
+          "targets": [
+            {
+              "refId": "A",
+              "policy": "default",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]
+                },
+                {
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]
+                }
+              ],
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "type": "mean",
+                    "params": []
+                  }
+                ]
+              ],
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.tx_errors\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "alias": "Errors"
+            }
+          ],
+          "datasource": "influxdb",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "ordering": "alphabetical",
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "interval": "5s"
+        },
+        {
+          "title": "Network Tx Packets",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "isNew": true,
+          "id": 8,
+          "targets": [
+            {
+              "refId": "A",
+              "policy": "default",
+              "dsType": "influxdb",
+              "resultFormat": "time_series",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "params": [
+                    "$interval"
+                  ]
+                },
+                {
+                  "type": "fill",
+                  "params": [
+                    "null"
+                  ]
+                }
+              ],
+              "select": [
+                [
+                  {
+                    "type": "field",
+                    "params": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "type": "mean",
+                    "params": []
+                  }
+                ]
+              ],
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.network.interfaces.tx_packets\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": false,
+              "hide": false,
+              "alias": "Packets"
+            }
+          ],
+          "datasource": "influxdb",
+          "renderer": "flot",
+          "yaxes": [
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            },
+            {
+              "label": null,
+              "show": true,
+              "logBase": 1,
+              "min": null,
+              "max": null,
+              "format": "short"
+            }
+          ],
+          "xaxis": {
+            "show": true
+          },
+          "grid": {
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true,
+            "ordering": "alphabetical",
+            "msResolution": false
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": [],
+          "interval": "5s"
+        }
+      ]
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "project_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "02a061ef-3c77-11e6-a6ab-0242ac110025",
+            "value": "02a061ef-3c77-11e6-a6ab-0242ac110025"
+          },
+          {
+            "selected": false,
+            "text": "03cebe06-4687-11e6-98bd-0242ac110012",
+            "value": "03cebe06-4687-11e6-98bd-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "05c04a40-4942-11e6-acc3-0242ac110012",
+            "value": "05c04a40-4942-11e6-acc3-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "078bbbfe-4911-11e6-a8fa-0242ac110012",
+            "value": "078bbbfe-4911-11e6-a8fa-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "086bedf8-4633-11e6-9297-0242ac110012",
+            "value": "086bedf8-4633-11e6-9297-0242ac110012"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.project_id\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "service_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "12f9bc67-4687-11e6-98c0-0242ac110012",
+            "value": "12f9bc67-4687-11e6-98c0-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "155d77bc-4942-11e6-acc7-0242ac110012",
+            "value": "155d77bc-4942-11e6-acc7-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "2b54cd9d-3c77-11e6-a6ae-0242ac110025",
+            "value": "2b54cd9d-3c77-11e6-a6ae-0242ac110025"
+          },
+          {
+            "selected": false,
+            "text": "623db908-4911-11e6-a90a-0242ac110012",
+            "value": "623db908-4911-11e6-a90a-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "c862738e-4633-11e6-92c0-0242ac110012",
+            "value": "c862738e-4633-11e6-92c0-0242ac110012"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.service_id\" limit 5",
+        "refresh": 0,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "env_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "061aeeba-4912-11e6-a919-0242ac110012",
+            "value": "061aeeba-4912-11e6-a919-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "1a687054-4687-11e6-98c2-0242ac110012",
+            "value": "1a687054-4687-11e6-98c2-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "549e8c97-3c77-11e6-a6b2-0242ac110025",
+            "value": "549e8c97-3c77-11e6-a6b2-0242ac110025"
+          },
+          {
+            "selected": false,
+            "text": "780b1d6f-4942-11e6-accf-0242ac110012",
+            "value": "780b1d6f-4942-11e6-accf-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "cb098dd4-4634-11e6-92eb-0242ac110012",
+            "value": "cb098dd4-4634-11e6-92eb-0242ac110012"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.env_id\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "container_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "3f72bc3c9121a34820744ef32801f306f0082ac056cc381b57cd3e34167a8d2f",
+            "value": "3f72bc3c9121a34820744ef32801f306f0082ac056cc381b57cd3e34167a8d2f"
+          },
+          {
+            "selected": false,
+            "text": "44d7b82ceb442e0962bc9aa6d4dcc928eb4cac0738cd9b6a6ca132650a9c125c",
+            "value": "44d7b82ceb442e0962bc9aa6d4dcc928eb4cac0738cd9b6a6ca132650a9c125c"
+          },
+          {
+            "selected": false,
+            "text": "5c0399850a69990ca9edc17e1bc9421478cc121051c42d56a3c4f85027db9277",
+            "value": "5c0399850a69990ca9edc17e1bc9421478cc121051c42d56a3c4f85027db9277"
+          },
+          {
+            "selected": false,
+            "text": "902826fd364759294900386edc1a1b1cc81d152adb4d904bd0882bc6b8b7a516",
+            "value": "902826fd364759294900386edc1a1b1cc81d152adb4d904bd0882bc6b8b7a516"
+          },
+          {
+            "selected": false,
+            "text": "a1196d587274916e043ee58fa0b1b754264c55ea000c0e0b30fc6ea22f180f29",
+            "value": "a1196d587274916e043ee58fa0b1b754264c55ea000c0e0b30fc6ea22f180f29"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"containerId\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "schemaVersion": 12,
+  "version": 3,
+  "links": []
+}

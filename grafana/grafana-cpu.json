@@ -1,0 +1,658 @@
+{
+  "id": 5,
+  "title": "CPU",
+  "originalTitle": "CPU",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Usage",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"container.cpu.load_average\" WHERE \"com.cisco-shipped.project_id\" =~ /^$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /^$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /^$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load Average",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Usage",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.cpu.usage.system\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System Usage",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Usage",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.cpu.usage.total\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Usage",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "influxdb",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "interval": "5s",
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Usage",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "policy": "default",
+              "query": "SELECT non_negative_derivative(mean(\"value\"), 10s) FROM \"container.cpu.usage.user\" WHERE \"com.cisco-shipped.project_id\" =~ /$project_id$/ AND \"com.cisco-shipped.service_id\" =~ /$service_id$/ AND \"com.cisco-shipped.env_id\" =~ /$env_id$/ AND $timeFilter GROUP BY time(1m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "User Usage",
+          "tooltip": {
+            "msResolution": false,
+            "ordering": "alphabetical",
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "project_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "03cebe06-4687-11e6-98bd-0242ac110012",
+            "value": "03cebe06-4687-11e6-98bd-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "0459ad57-4be9-11e6-b6ea-0242ac110002",
+            "value": "0459ad57-4be9-11e6-b6ea-0242ac110002"
+          },
+          {
+            "selected": false,
+            "text": "078bbbfe-4911-11e6-a8fa-0242ac110012",
+            "value": "078bbbfe-4911-11e6-a8fa-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "086bedf8-4633-11e6-9297-0242ac110012",
+            "value": "086bedf8-4633-11e6-9297-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "08735896-398b-11e6-89af-0242ac110007",
+            "value": "08735896-398b-11e6-89af-0242ac110007"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.project_id\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "service_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "12f9bc67-4687-11e6-98c0-0242ac110012",
+            "value": "12f9bc67-4687-11e6-98c0-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "13c7f731-4be9-11e6-b6ed-0242ac110002",
+            "value": "13c7f731-4be9-11e6-b6ed-0242ac110002"
+          },
+          {
+            "selected": false,
+            "text": "15d70711-398b-11e6-89b3-0242ac110007",
+            "value": "15d70711-398b-11e6-89b3-0242ac110007"
+          },
+          {
+            "selected": false,
+            "text": "623db908-4911-11e6-a90a-0242ac110012",
+            "value": "623db908-4911-11e6-a90a-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "c862738e-4633-11e6-92c0-0242ac110012",
+            "value": "c862738e-4633-11e6-92c0-0242ac110012"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.service_id\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "influxdb",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "env_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "061aeeba-4912-11e6-a919-0242ac110012",
+            "value": "061aeeba-4912-11e6-a919-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "1a687054-4687-11e6-98c2-0242ac110012",
+            "value": "1a687054-4687-11e6-98c2-0242ac110012"
+          },
+          {
+            "selected": false,
+            "text": "232fd48a-398b-11e6-89b7-0242ac110007",
+            "value": "232fd48a-398b-11e6-89b7-0242ac110007"
+          },
+          {
+            "selected": false,
+            "text": "766a0c5f-4be9-11e6-b6f2-0242ac110002",
+            "value": "766a0c5f-4be9-11e6-b6f2-0242ac110002"
+          },
+          {
+            "selected": false,
+            "text": "cb098dd4-4634-11e6-92eb-0242ac110012",
+            "value": "cb098dd4-4634-11e6-92eb-0242ac110012"
+          }
+        ],
+        "query": "SHOW TAG VALUES WiTH KEY = \"com.cisco-shipped.env_id\" limit 5",
+        "refresh": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "datasource": null,
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "container_id",
+        "options": [],
+        "query": "SHOW TAG VALUES WiTH KEY = \"containerId\" limit 5",
+        "refresh": 0,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "schemaVersion": 12,
+  "version": 0,
+  "links": []
+}
